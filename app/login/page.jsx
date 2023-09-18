@@ -79,12 +79,13 @@ const LoginForm = () => {
 
 
   const showNotification = () => {
-    console.log("Entra a show");
-    if ("Notification" in window && Notification.permission === "granted") {
-      console.log('Entra al if');
-      const notification = new Notification("Modal Abierto", {
-        body: "El modal se ha abierto.",
-        // Puedes personalizar aún más la notificación aquí si es necesario.
+    if ('Notification' in window) {
+      Notification.requestPermission().then((permission) => {
+        if (permission === 'granted') {
+          new Notification('Título de la notificación', {
+            body: 'Contenido de la notificación',
+          });
+        }
       });
     }
   };
